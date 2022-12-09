@@ -13,8 +13,6 @@ formEl.addEventListener('submit', function(e) {
   const BASE_URL = `https://api.nytimes.com/svc/books/v3/lists/${year}-${month}-${day}/hardcover-fiction.json`;
   const url = `${BASE_URL}?q=tech&api-key=${API_KEY}`;
 
-  console.log(url)
-
   // Fetch bestselling books for date and add top 5 to page
 
   fetch(url)
@@ -32,7 +30,10 @@ formEl.addEventListener('submit', function(e) {
             Rank: book.rank,
             Title: book.title,
             Author: book.author,
-            Description: book.description
+            Description: book.description,
+
+            // {EXTRA CREDIT}
+            Image: book.book_image
           });
         }
         return books;
@@ -47,9 +48,20 @@ formEl.addEventListener('submit', function(e) {
       
       // For each book object, each key-value pairs are displayed
       obj.forEach(book => {
+
         for (const key in book) {
+
+          // {EXTRA CREDIT} - Display book image
+          if (key === 'Image') {
+            const imgEl = document.createElement('img');
+            imgEl.src = book[key];
+            imgEl.style.margin = "0 0 20px 0";
+            bookContainer.appendChild(imgEl);
+            continue;
+          }
+
           const bookEl = document.createElement('p');
-          bookEl.innerText = `${key}: ${book[key]}\n`;
+          bookEl.innerText = `${key}: ${book[key]}`;
           bookContainer.appendChild(bookEl);
         }
       });
