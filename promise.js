@@ -7,7 +7,7 @@ let myPromise = new Promise(function(resolve, reject) {
     randomNum > 0.5 ? resolve('Success') : reject('Fail');
     
     console.log('Complete')
-  }, 1000);
+  }, 1000);  // in milliseconds
 });
 
 myPromise.then(message => {

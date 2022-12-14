@@ -1,6 +1,6 @@
 let color = 255;
 
-setInterval( function() {
+let reduceDark = setInterval( function() {
     if(color > 0) {
         color--;
         document.body.style.backgroundColor = `rgb(${color}, ${color}, ${color})`;
